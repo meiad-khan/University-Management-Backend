@@ -1,0 +1,30 @@
+
+enum Role {
+  STUDENT
+  INSTRUCTOR
+  ADMIN
+}
+
+enum EnrollmentStatus {
+  ENROLLED
+  DROPPED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+  FAILED
+  CANCELLED
+  REFUNDED
+}
+
+enum PaymentProvider {
+  BKASH
+}
+
+enum SemesterStatus {
+  UPCOMING
+  ACTIVE
+  COMPLETED
+}

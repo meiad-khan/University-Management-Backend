@@ -1,0 +1,25 @@
+
+model Payment {
+  id                String          @id @default(cuid())
+  studentId         String
+  enrollmentId      String?
+  provider          PaymentProvider @default(BKASH)
+  amount            Decimal         @db.Decimal(12, 2)
+  currency          String          @default("BDT")
+  status            PaymentStatus   @default(PENDING)
+  merchantInvoice   String          @unique
+  providerPaymentId String?         @unique
+  providerTrxId     String?         @unique
+  callbackVerified  Boolean         @default(false)
+  paidAt            DateTime?
+  deletedAt         DateTime?
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+
+  student    User        @relation(fields: [studentId], references: [id])
+  enrollment Enrollment? @relation(fields: [enrollmentId], references: [id])
+
+  @@index([studentId, status])
+  @@index([status, createdAt])
+  @@index([deletedAt])
+}
